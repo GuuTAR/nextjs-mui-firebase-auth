@@ -75,10 +75,13 @@ $ yarn build
 $ yarn start
 ```
 
-## Lint
+## Lint and type check
 
 ```bash
 $ yarn lint
+
+# generates Next.js route types (LayoutProps, PageProps, ...) then runs tsc
+$ yarn type-check
 ```
 
 ## License

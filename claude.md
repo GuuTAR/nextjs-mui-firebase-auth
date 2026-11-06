@@ -88,7 +88,7 @@ GitHub Actions workflow: `.github/workflows/pr-build-check.yml`
 Triggers on PRs targeting `main` or `dev`. Runs in order:
 
 1. **Lint** — `yarn lint`
-2. **Type Check** — `yarn tsc --noEmit`
+2. **Type Check** — `yarn type-check` (`next typegen && tsc --noEmit`)
 3. **Build** — `yarn build`
 
 All three must pass before a PR can be merged.
