@@ -16,7 +16,7 @@ import CoreButton from '@/components/core/CoreButton'
 import * as Styles from './style'
 
 export default function AppMenuDesktop() {
-  const pathname: string = usePathname()
+  const pathname: string | null = usePathname()
 
   const { language } = useAppData()
   // const { handleLogout } = useUserData()

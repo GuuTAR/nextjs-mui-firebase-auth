@@ -13,7 +13,7 @@ import * as Styles from './style'
 
 export default function AppMenuMobile() {
   const router = useRouter()
-  const pathname: string = usePathname()
+  const pathname: string | null = usePathname()
   const { language } = useAppData()
 
   const visibleMenuItems: AppMenuMobileType[] = APP_MENU_DATA_MOBILE.filter((menu) => !menu.isVisibleInMore)
