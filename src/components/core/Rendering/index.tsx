@@ -1,19 +1,20 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import { ReactNode, useEffect, useState } from 'react'
 
-import * as Styles from './style'
+import { CircularProgress } from '@mui/material'
 
-const CircularProgress = dynamic(() => import('@mui/material').then((m) => ({ default: m.CircularProgress })), {
-  ssr: false,
-})
+import { useAppData } from '@/providers/AppDataProvider'
+
+import * as Styles from './style'
 
 type Props = {
   children: ReactNode
 }
 
 export default function Rendering({ children }: Props) {
+  const { isAppInitialized } = useAppData()
+
   const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
 
   useEffect(() => {
@@ -22,15 +23,15 @@ export default function Rendering({ children }: Props) {
       setIsDataLoaded(true)
     }
 
-    fetchRecords()
-  }, [])
+    if (isAppInitialized) {
+      fetchRecords()
+    }
+  }, [isAppInitialized])
 
-  if (!isDataLoaded)
-    return (
-      <Styles.LoadingStack>
-        <CircularProgress color="primary" />
-      </Styles.LoadingStack>
-    )
-
-  return children
+  return (
+    <Styles.LoadingStack>
+      {!isDataLoaded && <CircularProgress color="primary" />}
+      <Styles.Content isVisible={isDataLoaded}>{children}</Styles.Content>
+    </Styles.LoadingStack>
+  )
 }
