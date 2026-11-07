@@ -6,3 +6,9 @@ export const LoadingStack = styled(Stack)(() => ({
   justifyContent: 'center',
   alignItems: 'center',
 }))
+
+export const Content = styled(Stack, {
+  shouldForwardProp: (prop) => prop !== 'isVisible',
+})<{ isVisible: boolean }>(({ isVisible }) => ({
+  display: isVisible ? 'contents' : 'none',
+}))
