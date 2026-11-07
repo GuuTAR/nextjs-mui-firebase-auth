@@ -7,8 +7,8 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 
 import { DEFAULT_LANGUAGE } from '@/data/user'
 
-import AppName from '@/components/core/AppName'
-import BoldText from '@/components/core/BoldText'
+import AppName from '@/views/components/core/AppName'
+import BoldText from '@/views/components/core/BoldText'
 
 import * as Languages from './lang'
 import * as Styles from './style'

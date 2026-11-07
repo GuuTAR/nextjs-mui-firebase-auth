@@ -10,8 +10,8 @@ import { APP_MENU_DATA_DESKTOP } from '@/data/global'
 
 import { useAppData } from '@/providers/AppDataProvider'
 
-import AppName from '@/components/core/AppName'
-import CoreButton from '@/components/core/CoreButton'
+import AppName from '@/views/components/core/AppName'
+import CoreButton from '@/views/components/core/CoreButton'
 
 import * as Styles from './style'
 

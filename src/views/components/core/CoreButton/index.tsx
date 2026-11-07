@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 import { Button, ButtonProps } from '@mui/material'
 
-import CoreLink from '@/components/core/CoreLink'
+import CoreLink from '@/views/components/core/CoreLink'
 
 type Props = {
   path?: string

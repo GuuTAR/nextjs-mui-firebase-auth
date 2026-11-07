@@ -4,7 +4,7 @@ import { Stack, Typography } from '@mui/material'
 
 import { useAppData } from '@/providers/AppDataProvider'
 
-import BoldText from '@/components/core/BoldText'
+import BoldText from '@/views/components/core/BoldText'
 
 import * as Languages from './lang'
 import * as Styles from './style'

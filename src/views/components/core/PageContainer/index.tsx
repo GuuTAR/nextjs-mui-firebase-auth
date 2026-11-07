@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import AppMenu from '@/components/core/AppMenu'
+import AppMenu from '@/views/components/core/AppMenu'
 
 import * as Styles from './style'
 

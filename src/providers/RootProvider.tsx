@@ -12,7 +12,7 @@ import { theme } from '@/theme/theme'
 
 import { AppDataProvider } from '@/providers/AppDataProvider'
 
-import Rendering from '@/components/core/Rendering'
+import Rendering from '@/views/components/core/Rendering'
 
 type Props = {
   children: ReactNode

@@ -7,7 +7,7 @@ import { APP_MENU_DATA_MOBILE } from '@/data/global'
 
 import { useAppData } from '@/providers/AppDataProvider'
 
-import AppName from '@/components/core/AppName'
+import AppName from '@/views/components/core/AppName'
 
 import * as Styles from './style'
 

@@ -2,7 +2,7 @@ import { AppBar, List, ListItemIcon, Stack, styled, Typography } from '@mui/mate
 
 import { APP_MENU_SIZE, NAVBAR_HEIGHT } from '@/data/global'
 
-import CoreButton from '@/components/core/CoreButton'
+import CoreButton from '@/views/components/core/CoreButton'
 
 export const DesktopTopbar = styled(AppBar)(({ theme }) => ({
   position: 'fixed',
