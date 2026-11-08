@@ -13,6 +13,9 @@ class FirebaseAdmin {
       this.app = getApp()
     } else {
       const { firebaseAdminConfig } = configService.getServerConfig()
+      if (typeof firebaseAdminConfig === 'string') return
+      if (!firebaseAdminConfig.projectId || !firebaseAdminConfig.privateKey || !firebaseAdminConfig.clientEmail) return
+
       this.app = initializeApp({ credential: cert(firebaseAdminConfig) })
     }
   }
