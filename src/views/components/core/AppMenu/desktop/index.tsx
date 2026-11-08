@@ -9,6 +9,7 @@ import {
   ListItemIcon,
   ListItemText,
   Stack,
+  Tooltip,
   Typography,
 } from '@mui/material'
 
@@ -26,6 +27,7 @@ import { useUserData } from '@/providers/UserDataProvider'
 import { LOGOUT_LABEL } from '@/views/components/core/AppMenu/lang'
 import AppName from '@/views/components/core/AppName'
 import CoreButton from '@/views/components/core/CoreButton'
+import ProfileAvatar from '@/views/components/core/ProfileAvatar'
 
 import * as Styles from './style'
 
@@ -37,8 +39,7 @@ export default function AppMenuDesktop() {
 
   return (
     <>
-      {/* TODO: Add logout */}
-      {/* <Styles.DesktopTopbar elevation={0}>
+      <Styles.DesktopTopbar elevation={0}>
         <Tooltip title="Profile" placement="left">
           <Stack>
             <CoreButton path="/profile">
@@ -46,7 +47,7 @@ export default function AppMenuDesktop() {
             </CoreButton>
           </Stack>
         </Tooltip>
-      </Styles.DesktopTopbar> */}
+      </Styles.DesktopTopbar>
       <Drawer variant="permanent" anchor="left">
         <Styles.DrawerContentWrapper>
           <Styles.MenuContainer>

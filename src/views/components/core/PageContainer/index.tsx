@@ -13,7 +13,9 @@ export default function PageContainer({ isShowAppMenu = false, children }: Props
   return (
     <Styles.PageContent isShowAppMenu={isShowAppMenu}>
       {isShowAppMenu ? <AppMenu /> : null}
-      <Styles.StyledContainer>{children}</Styles.StyledContainer>
+      <Styles.StyledContainer>
+        <Styles.Root>{children}</Styles.Root>
+      </Styles.StyledContainer>
     </Styles.PageContent>
   )
 }

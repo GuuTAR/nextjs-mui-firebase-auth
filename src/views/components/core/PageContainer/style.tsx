@@ -23,3 +23,8 @@ export const StyledContainer = styled(Container)(({ theme }) => ({
     paddingTop: theme.spacing(0),
   },
 }))
+
+export const Root = styled(Stack)(({ theme }) => ({
+  alignItems: 'center',
+  background: theme.palette.background.default,
+}))

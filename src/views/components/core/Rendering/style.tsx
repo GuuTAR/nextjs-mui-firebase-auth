@@ -10,5 +10,6 @@ export const LoadingStack = styled(Stack)(() => ({
 export const Content = styled(Stack, {
   shouldForwardProp: (prop) => prop !== 'isVisible',
 })<{ isVisible: boolean }>(({ isVisible }) => ({
-  display: isVisible ? 'contents' : 'none',
+  display: isVisible ? 'flex' : 'none',
+  width: '100%',
 }))
