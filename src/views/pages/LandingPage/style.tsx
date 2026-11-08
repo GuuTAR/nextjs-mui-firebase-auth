@@ -4,7 +4,6 @@ export const LoginPageStyle = styled(Stack)(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: '1fr 0.5fr',
   width: '100%',
-  height: '100%',
   minHeight: '100vh',
   [theme.breakpoints.down('md')]: {
     gridTemplateColumns: '1fr',
