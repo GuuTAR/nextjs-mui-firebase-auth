@@ -41,7 +41,10 @@ class UtilService {
     return targetString.toUpperCase().includes(searchString.toUpperCase())
   }
 
-  public responseBody = <T>(statusCode: number, responseData?: ResponseData<T>): NextResponse => {
+  public responseBody = <T = undefined>(
+    statusCode: number,
+    responseData?: ResponseData<T>,
+  ): NextResponse<ResponseData<T>> => {
     return NextResponse.json(
       {
         message: responseData?.message,

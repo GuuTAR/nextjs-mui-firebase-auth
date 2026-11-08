@@ -16,14 +16,14 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Todo App',
-  description: 'Todo App with Next.js',
+  title: 'NextJS Project',
+  description: 'NextJS + MUI + Firebase Authentication',
 }
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <RootProvider>{children}</RootProvider>
       </body>
     </html>

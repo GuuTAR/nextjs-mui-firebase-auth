@@ -14,6 +14,25 @@ Reusable Next.js project template with MUI and Firebase Authentication.
 $ yarn
 ```
 
+## Firebase setup
+
+In the [Firebase console](https://console.firebase.google.com/):
+
+1. **Authentication → Sign-in method:** enable **Google** and **Email/Password**.
+2. **Authentication → Users:** add the demo user, then put its email, password and UID in `DEMO_USER`, `DEMO_PASSWORD` and `DEMO_UID`.
+3. **Authentication → Settings → Authorized domains:** add every domain the app is served from (`localhost` is there by default).
+4. **Project settings → Service accounts:** generate a private key for the `FIREBASE_ADMIN_*` variables.
+
+## How authentication works
+
+1. The login page signs in with the Firebase client SDK: a Google popup, or email and password for the demo user.
+2. The client sends the resulting ID token to `POST /api/auth/session`. The server verifies it with `firebase-admin` and sets an httpOnly `session` cookie that lasts `FIREBASE_ADMIN_SESSION_LIFETIME_DAYS` days. The client SDK then signs out, so the cookie is the only session.
+3. `src/proxy.ts` redirects requests without a `session` cookie to `/login`, and requests with one away from `/login`. It only checks that the cookie exists.
+4. `UserDataProvider` loads the user from `GET /api/auth/session`, which fully verifies the cookie, including revocation. If the cookie is invalid, it clears the cookie and sends the user to `/login`.
+5. Logout calls `DELETE /api/auth/session`, which revokes the user's refresh tokens and clears the cookie.
+
+In client components, `useUserData()` returns `user`, `handleLogin`, `handleDemoLogin` and `handleLogout`. In server code, verify the cookie with `sessionService.verifySessionCookie()` before returning user data.
+
 ## Environment
 
 Copy `.env.template` to `.env.local` and fill in the values. Next.js loads it automatically, and real environment variables take precedence over it.

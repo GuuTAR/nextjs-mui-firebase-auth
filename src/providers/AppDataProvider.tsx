@@ -50,13 +50,9 @@ export const AppDataProvider = ({ children }: Props) => {
   // Initialization
   useEffect(() => {
     const initializeApp = async () => {
-      const [backend, demo, firebaseConfig] = await Promise.all([
-        configService.getBeckendConfig(),
-        configService.getDemoConfig(),
-        configService.getFirebaseClientConfig(),
-      ])
+      const [backend, demo] = await Promise.all([configService.getBeckendConfig(), configService.getDemoConfig()])
 
-      setClientAppConfig({ backend, demo, firebaseConfig })
+      setClientAppConfig({ backend, demo })
 
       _setDisplayName(localStorageService.getValue('displayName') ?? '')
       const savedLanguage = localStorageService.getValue('language') as LANGUAGE | null
