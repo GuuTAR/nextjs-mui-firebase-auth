@@ -14,13 +14,6 @@ export class AuthAPI {
   }
 
   public getSession = async (): Promise<SessionUser | undefined> => {
-    // const result: AxiosResponse<ResponseData<SessionUser | undefined>> =
-    //   await this.api.get<ResponseData<SessionUser>>('/api/auth/session')
-
-    // if ([STATUS_CODE.OK].includes(result.status)) {
-    //   return result.data.body
-    // }
-
     try {
       const result: AxiosResponse<ResponseData<SessionUser | undefined>> =
         await this.api.get<ResponseData<SessionUser>>('/api/auth/session')
@@ -28,7 +21,8 @@ export class AuthAPI {
         return result.data.body
       }
       throw new Error(`Unexpected status code: ${result.status}`)
-    } catch {
+    } catch (error) {
+      console.error('Error in GET /api/auth/session:', (error as Error).message)
       return undefined
     }
   }

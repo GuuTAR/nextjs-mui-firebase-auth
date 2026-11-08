@@ -19,7 +19,7 @@ export async function GET() {
       },
     })
   } catch (error) {
-    console.error('Error in POST /api/config/firebase:', (error as Error).message)
+    console.error('Error in Server GET /api/config/firebase:', (error as Error).message)
     return utilService.responseBody(STATUS_CODE.INTERNAL_SERVER_ERROR, { message: (error as Error).message })
   }
 }
