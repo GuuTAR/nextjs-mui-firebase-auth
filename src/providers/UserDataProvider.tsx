@@ -18,7 +18,7 @@ import { firebaseClient } from '@/libs/firebaseClient'
 import { SessionUser } from '@/types/SessionUser'
 
 import { HOME_PATH, LOGIN_PATH, PUBLIC_PATHS } from '@/data/auth'
-import { SIGN_IN_FAILED, SIGN_OUT_FAILED } from '@/lang/auth'
+import { SIGN_IN_FAILED, SIGN_IN_SUCCESS, SIGN_OUT_FAILED, SIGN_OUT_SUCCESS } from '@/lang/auth'
 
 import { AuthAPI } from '@/api/authApi'
 
@@ -89,6 +89,7 @@ export const UserDataProvider = ({ children }: Props) => {
         return
       }
       setUser(sessionUser)
+      handleShowNotification({ message: SIGN_IN_SUCCESS[language], severity: 'success' })
       router.replace(HOME_PATH)
     } catch (error) {
       if (error instanceof FirebaseError && CANCELLED_SIGN_IN_ERRORS.includes(error.code)) return
@@ -118,6 +119,7 @@ export const UserDataProvider = ({ children }: Props) => {
         return
       }
       setUser(sessionUser)
+      handleShowNotification({ message: SIGN_IN_SUCCESS[language], severity: 'success' })
       router.replace(HOME_PATH)
     } catch (error) {
       console.error('Sign in failed:', (error as Error).message)
@@ -129,8 +131,13 @@ export const UserDataProvider = ({ children }: Props) => {
 
   const handleLogout = useCallback(async () => {
     try {
-      await authApi.deleteSession()
+      const isSignedOut: boolean = await authApi.deleteSession()
+      if (!isSignedOut) {
+        handleShowNotification({ message: SIGN_OUT_FAILED[language], severity: 'error' })
+        return
+      }
       setUser(null)
+      handleShowNotification({ message: SIGN_OUT_SUCCESS[language], severity: 'success' })
       router.replace(LOGIN_PATH)
     } catch (error) {
       console.error('Sign out failed:', (error as Error).message)
