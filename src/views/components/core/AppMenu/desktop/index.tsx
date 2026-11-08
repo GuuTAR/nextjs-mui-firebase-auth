@@ -1,6 +1,18 @@
 import { usePathname } from 'next/navigation'
 
-import { Drawer, List, ListItem, Stack, Typography } from '@mui/material'
+import {
+  Divider,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Stack,
+  Typography,
+} from '@mui/material'
+
+import LogoutIcon from '@mui/icons-material/Logout'
 
 import { AppMenuItemButton, AppMenuItemDefault, AppMenuItemTypography } from '@/types/AppMenu'
 import { AppMenuType } from '@/enum/AppMenu'
@@ -9,7 +21,9 @@ import { LANGUAGE } from '@/enum/global'
 import { APP_MENU_DATA_DESKTOP } from '@/data/global'
 
 import { useAppData } from '@/providers/AppDataProvider'
+import { useUserData } from '@/providers/UserDataProvider'
 
+import { LOGOUT_LABEL } from '@/views/components/core/AppMenu/lang'
 import AppName from '@/views/components/core/AppName'
 import CoreButton from '@/views/components/core/CoreButton'
 
@@ -19,7 +33,7 @@ export default function AppMenuDesktop() {
   const pathname: string | null = usePathname()
 
   const { language } = useAppData()
-  // const { handleLogout } = useUserData()
+  const { handleLogout } = useUserData()
 
   return (
     <>
@@ -89,8 +103,7 @@ export default function AppMenuDesktop() {
               })}
             </List>
           </Styles.MenuContainer>
-          {/* TODO: Add logout */}
-          {/* <Stack>
+          <Stack>
             <Divider />
             <Styles.MenuFooterContainer>
               <ListItem disablePadding>
@@ -102,7 +115,7 @@ export default function AppMenuDesktop() {
                 </ListItemButton>
               </ListItem>
             </Styles.MenuFooterContainer>
-          </Stack> */}
+          </Stack>
         </Styles.DrawerContentWrapper>
       </Drawer>
     </>
