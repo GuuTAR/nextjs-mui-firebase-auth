@@ -21,7 +21,7 @@ export async function GET(): Promise<NextResponse<ResponseData<SessionUser | nul
       body: user,
     })
   } catch (error) {
-    console.error('Error in GET /api/auth/session:', (error as Error).message)
+    console.error('Error in Server GET /api/auth/session:', (error as Error).message)
     return utilService.responseBody(STATUS_CODE.INTERNAL_SERVER_ERROR, { message: (error as Error).message })
   }
 }
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
       body: user,
     })
   } catch (error) {
-    console.error('Error in POST /api/auth/session:', (error as Error).message)
+    console.error('Error in Server POST /api/auth/session:', (error as Error).message)
     return utilService.responseBody(STATUS_CODE.INTERNAL_SERVER_ERROR, { message: (error as Error).message })
   }
 }
@@ -53,7 +53,7 @@ export async function DELETE(): Promise<NextResponse<ResponseData<undefined>>> {
   try {
     // Get the session cookie from the request
     const cookieStore = await cookies()
-    const sessionCookie = cookieStore.get('session')
+    const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME)
 
     if (!sessionCookie) {
       return utilService.responseBody<undefined>(STATUS_CODE.BAD_REQUEST, { message: 'No session cookie found' })
@@ -68,11 +68,11 @@ export async function DELETE(): Promise<NextResponse<ResponseData<undefined>>> {
     }
 
     // Clear the session cookie
-    cookieStore.delete('session')
+    cookieStore.delete(SESSION_COOKIE_NAME)
 
     return utilService.responseBody<undefined>(STATUS_CODE.OK, { message: 'Delete session successful' })
   } catch (error) {
-    console.error('Error in POST /api/auth/session:', (error as Error).message)
+    console.error('Error in Server DELETE /api/auth/session:', (error as Error).message)
     return utilService.responseBody<undefined>(STATUS_CODE.INTERNAL_SERVER_ERROR, { message: (error as Error).message })
   }
 }

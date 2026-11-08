@@ -57,7 +57,8 @@ class SessionService {
     try {
       const decodedToken: DecodedIdToken = await firebaseAdmin.getAuth().verifySessionCookie(sessionCookie, true)
       return this.toSessionUser(decodedToken)
-    } catch {
+    } catch (error) {
+      console.error('Error verifying session cookie:', (error as Error).message)
       return null
     }
   }
